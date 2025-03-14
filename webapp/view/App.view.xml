@@ -1,0 +1,15 @@
+<mvc:View controllerName="scwp.scwpfrontend.controller.App"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    id="appView">
+    <Shell id="_IDGenShell1">
+        <App id="app">
+            <pages>
+                <Page id="_IDGenPage1" enableScrolling="false">
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+
+</mvc:View>

@@ -1,0 +1,8 @@
+<mvc:View controllerName="scwp.scwpfrontend.controller.SearchWorkingWithYou"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:forms="sap.ui.layout.form" xmlns="sap.m">
+	<List id="_IDGenList4" headerText="Working With You"
+		items="{path: 'searchProfileData>/', factory: '.onListItemFactory'}">
+	</List>
+
+</mvc:View>

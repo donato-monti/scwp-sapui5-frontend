@@ -1,0 +1,174 @@
+<mvc:View controllerName="scwp.scwpfrontend.controller.SearchProfile"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:m="sap.m"
+    xmlns="sap.uxap"
+    xmlns:layout="sap.ui.layout"
+    xmlns:sections="scwp.scwpfrontend.view.search-profile-sections"
+    xmlns:ui="sap.ui.unified"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    id="searchProfileView"
+>
+    <m:Page id="searchprofile" showHeader="true">
+        <m:customHeader>
+            <m:Toolbar id="_IDGenToolbar1">
+                <m:content>
+                    <m:FlexBox id="_IDGenFlexBox1" justifyContent="SpaceBetween"
+                        alignItems="Center" width="100%">
+                        <m:Button id="_IDGenButton1" icon="sap-icon://home" text="Home"
+                            press="onNavigateToHome" />
+                        <m:FlexBox id="_IDGenFlexBox2" justifyContent="Center"
+                            alignItems="Center">
+                            <m:SearchField id="SearchField" width="100%"
+                                class="sapUiSmallMargin" placeholder="Search Users..."
+                                search="onSearch" />
+                        </m:FlexBox>
+                        <m:Button id="_IDGenButton2" icon="sap-icon://account"
+                            text="My Profile" press="onNavigateProfile" />
+                    </m:FlexBox>
+                </m:content>
+            </m:Toolbar>
+        </m:customHeader>
+        <m:content>
+
+
+            <ObjectPageLayout id="ObjectPageLayout"
+                enableLazyLoading="true"
+                useIconTabBar="false"
+                showTitleInHeaderContent="true"
+                selectedSection="sPersonal"
+                upperCaseAnchorBar="false">
+                <headerTitle>
+                    <ObjectPageDynamicHeaderTitle id="_IDGenObjectPageDynamicHeaderTitle1">
+                        <expandedHeading>
+                            <m:Title text="{searchUserData>/name}" id="sNameTitle" wrapping="true" />
+                        </expandedHeading>
+
+                        <snappedHeading>
+                            <m:FlexBox id="_IDGenFlexBox3" fitContainer="true" alignItems="Center">
+                                <m:Title text="{searchUserData>/name}" id="sNameTitleSnapped"
+                                    wrapping="true" />
+
+                            </m:FlexBox>
+
+                        </snappedHeading>
+
+                    </ObjectPageDynamicHeaderTitle>
+                </headerTitle>
+
+                <headerContent>
+                    <m:FlexBox id="_IDGenFlexBox11" wrap="Wrap" fitContainer="true">
+                        <m:HBox id="_IDGenHBox4">
+                            <m:VBox id="_IDGenVBox3">
+                                <m:Image id="searchProfileImage"
+                                    width="200px"
+                                    class="sapUiTinyMarginEnd"
+                                    src="{= ${moduleIdModel>/idUrl} + '/backend-dest/profile/image?email=' + ${searchUserData>/email} }"
+                                />
+                            </m:VBox>
+
+                            <m:VBox id="_IDGenVBox2">
+                                <m:FlexBox id="_IDGenFlexBox5">
+                                    <m:HBox id="_IDGenHBox2" alignItems="Center">
+                                        <m:Text id="_IDGenText1"
+                                            text="E-Mail: {searchUserData>/email}" />
+                                        <m:Button id="_IDGenButton3" text="Send E-Mail"
+                                            type="Transparent"
+                                            press="onPressTriggerMail"
+                                            icon="sap-icon://email"
+                                            class="sapUiSmallMarginBegin" />
+                                    </m:HBox>
+
+                                </m:FlexBox>
+
+                                <m:FlexBox id="_IDGenFlexBox6" alignItems="Center">
+                                    <m:HBox id="_IDGenHBox3" alignItems="Center">
+                                        <m:Text id="_IDGenText2"
+                                            text="Phone: {searchUserData>/phone}" />
+                                        <m:Button id="_IDGenButton4" text="Call" type="Transparent"
+                                            press="onPressTriggerPhone"
+                                            icon="sap-icon://call"
+                                            class="sapUiSmallMarginBegin"
+                                            visible="{= ${searchUserData>/phone} !== '' &amp;&amp; ${searchUserData>/phone} !== null ? true : false }" />
+                                    </m:HBox>
+                                </m:FlexBox>
+
+                                <m:FlexBox id="_IDGenFlexBox7" alignItems="Center">
+                                    <m:Text id="_IDGenText3"
+                                        text="Department: {searchUserData>/department}" />
+                                </m:FlexBox>
+
+                                <m:FlexBox id="_IDGenFlexBox8" alignItems="Center">
+                                    <m:Text id="_IDGenText4" text="Team: {searchUserData>/team}" />
+                                </m:FlexBox>
+
+                                <m:FlexBox id="_IDGenFlexBox10" alignItems="Center">
+                                    <m:Text id="_IDGenText6"
+                                        text="Position: {searchUserData>/position}" />
+                                </m:FlexBox>
+
+                                <m:FlexBox id="_IDGenFlexBox9" alignItems="Center">
+                                    <m:Text id="_IDGenText5"
+                                        text="Location: {searchUserData>/location}" />
+                                </m:FlexBox>
+
+                            </m:VBox>
+
+
+                        </m:HBox>
+
+
+                    </m:FlexBox>
+                </headerContent>
+
+                <sections>
+                    <ObjectPageSection titleUppercase="false" id="sPersonal"
+                        title="General Information About Me" showTitle="false">
+                        <subSections>
+                            <ObjectPageSubSection id="subsectionSPersonal" titleUppercase="false">
+                                <blocks>
+                                    <sections:SearchPersonal id="sPersonalBlock" />
+                                </blocks>
+                            </ObjectPageSubSection>
+                        </subSections>
+                    </ObjectPageSection>
+                    <ObjectPageSection titleUppercase="false" id="sWayOfWorking"
+                        title="My Way of Working" showTitle="false">
+                        <subSections>
+                            <ObjectPageSubSection id="subsectionSWayOfWorking"
+                                titleUppercase="false" showTitle="false">
+                                <blocks>
+                                    <sections:SearchWayOfWorking id="sWayOfWorkingBlock" />
+                                </blocks>
+                            </ObjectPageSubSection>
+                        </subSections>
+                    </ObjectPageSection>
+                    <ObjectPageSection titleUppercase="false" id="sWorkingWithYou"
+                        title="Working With You" showTitle="false">
+                        <subSections>
+                            <ObjectPageSubSection id="subsectionSWorkingWithYou"
+                                titleUppercase="false">
+                                <blocks>
+                                    <sections:SearchWorkingWithYou id="sWorkingWithYouBlock" />
+                                </blocks>
+                            </ObjectPageSubSection>
+                        </subSections>
+                    </ObjectPageSection>
+                    <ObjectPageSection titleUppercase="false" id="sYouDidntKnow"
+                        title="Something You Didn't Know About Me" showTitle="false"> 
+                        <subSections>
+                            <ObjectPageSubSection id="subsectionSYouDidntKnow"
+                                titleUppercase="false">
+                                <blocks>
+                                    <sections:SearchYouDidntKnow id="sYouDidntKnowBlock" />
+                                </blocks>
+                            </ObjectPageSubSection>
+                        </subSections>
+                    </ObjectPageSection>
+
+                </sections>
+            </ObjectPageLayout>
+        </m:content>
+
+    </m:Page>
+
+</mvc:View>

@@ -1,0 +1,47 @@
+{
+  "xsappname": "scwp-xsuaa",
+  "scopes": [
+  {
+  "name": "$XSAPPNAME.User",
+  "description": "Default User Permissions"
+  },
+  {
+  "name": "$XSAPPNAME.Admin",
+  "description": "Admin Permissions"
+  }
+  ],
+  "role-templates": [
+  {
+  "name": "SCWP-User",
+  "description": "Standard User Role",
+  "scope-references": [
+  "$XSAPPNAME.User",
+  "uaa.user"
+  ]
+  },
+  {
+  "name": "SCWP-Administrator",
+  "description": "Administrator Role",
+  "scope-references": [
+  "$XSAPPNAME.User",
+  "$XSAPPNAME.Admin"
+  ]
+  }
+  ],
+  "role-collections": [
+  {
+  "name": "SCWP-User",
+  "description": "Social Co-Worker Profile User",
+  "role-template-references": [
+  "$XSAPPNAME.SCWP-User"
+  ]
+  },
+  {
+  "name": "SCWP-Administrator",
+  "description": "Social Co-Worker Profile Administrator",
+  "role-template-references": [
+  "$XSAPPNAME.SCWP-Administrator"
+  ]
+  }
+  ]
+  }

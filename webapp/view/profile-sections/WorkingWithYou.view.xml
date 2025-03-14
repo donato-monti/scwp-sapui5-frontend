@@ -1,0 +1,11 @@
+<mvc:View controllerName="scwp.scwpfrontend.controller.WorkingWithYou" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:forms="sap.ui.layout.form" xmlns="sap.m">
+	<List id="_IDWoWList1" headerText="Working With You"
+		items="{path: 'profileData>/', factory: '.onListItemFactory'}">
+	</List>
+	<FlexBox id="_IDGenFlexBox1" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"
+		justifyContent="Center" alignItems="Center">
+		<Button id="showHiddenButton" text="Show Hidden Questions"
+			press="onShowHiddenQuestionsPress" visible="{editModel>/editable}" />
+	</FlexBox>
+</mvc:View>

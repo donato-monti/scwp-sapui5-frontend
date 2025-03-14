@@ -1,0 +1,205 @@
+<mvc:View controllerName="scwp.scwpfrontend.controller.Profile"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:m="sap.m"
+    xmlns="sap.uxap"
+    xmlns:layout="sap.ui.layout"
+    xmlns:sections="scwp.scwpfrontend.view.profile-sections"
+    xmlns:ui="sap.ui.unified"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+>
+    <m:Page id="profile" showHeader="true">
+        <m:customHeader>
+            <m:Toolbar id="_IDGenToolbar111">
+                <m:content>
+                    <m:FlexBox id="_IDGenFlexBox4" justifyContent="SpaceBetween"
+                        alignItems="Center" width="100%">
+                        <m:Button id="_IDGenButton6" icon="sap-icon://home" text="Home"
+                            press="onNavigateToHome" />
+                        <m:FlexBox id="_IDGenFlexBox7" justifyContent="Center"
+                            alignItems="Center">
+                            <m:SearchField id="SearchField" width="100%"
+                                class="sapUiSmallMargin" placeholder="Search Users..."
+                                search="onSearch" />
+                        </m:FlexBox>
+                        <m:Button id="_IDGenButton7" icon="sap-icon://account"
+                            text="My Profile" press="onNavigateProfile" />
+                    </m:FlexBox>
+                </m:content>
+            </m:Toolbar>
+        </m:customHeader>
+        <m:content>
+
+
+            <ObjectPageLayout id="profileobjectpage"
+                enableLazyLoading="true"
+                useIconTabBar="false"
+                showTitleInHeaderContent="true"
+                selectedSection="personal"
+                upperCaseAnchorBar="false">
+
+                <headerTitle>
+                    <ObjectPageDynamicHeaderTitle id="_IDGenObjectPageDynamicHeaderTitle1">
+                        <expandedHeading>
+                            <m:Title text="" id="nameTitle" wrapping="true" />
+                        </expandedHeading>
+                        <snappedHeading>
+                            <m:FlexBox id="_IDGenFlexBox3" fitContainer="true" alignItems="Center">
+                                <m:Title text="" id="nameTitleSnapped" wrapping="true" />
+                            </m:FlexBox>
+                        </snappedHeading>
+                        <actions>
+                            <m:Button id="_IDGenButton3" text="Save My Profile"
+                                visible="{editModel>/editable}"
+                                press="onPressSave" type="Accept" />
+                            <m:Button id="_IDGenButton4" text="Cancel" type="Reject"
+                                press="onPressCancelEdit"
+                                visible="{editModel>/editable}" />
+                            <m:Button id="_IDGenButton5" text="Edit My Profile" type="Emphasized"
+                                press="onPressEditProfile"
+                                visible="{editModel>/showEdit}" />
+                            <m:Button id="_IDGenButton9" text="Share My Profile" type="Emphasized" 
+                                press="onPressShareProfile" 
+                                visible="{editModel>/showEdit}" />
+                        </actions>
+                    </ObjectPageDynamicHeaderTitle>
+                </headerTitle>
+                <headerContent>
+                    <m:FlexBox id="_IDGenFlexBox8" wrap="Wrap" fitContainer="true">
+                        <m:HBox id="_IDGenHBox1">
+                            <m:VBox id="_IDGenVBox1">
+                                <m:Image id="profileImage"
+                                    width="200px"
+                                    class="sapUiTinyMarginEnd"
+                                    src="{= ${moduleIdModel>/idUrl} + '/backend-dest/profile/image?email=' + ${emailData>/email} }"
+                                />
+                            </m:VBox>
+
+                            <m:VBox id="_IDGenVBox2">
+                                <m:FlexBox id="_IDGenFlexBox9">
+                                    <m:Text id="_IDGenText1" text="E-Mail: {emailData>/email}" />
+                                </m:FlexBox>
+
+                                <m:FlexBox id="_IDGenFlexBox10" alignItems="Center">
+                                    <m:Text id="_IDGenText2" text="Phone: " />
+                                    <m:Input id="_IDGenInput1" value="{userData>/phone}"
+                                        editable="{editModel>/editable}" />
+                                </m:FlexBox>
+
+                                <m:FlexBox id="_IDGenFlexBox11" alignItems="Center">
+                                    <m:Text id="_IDGenText3" text="Department: " />
+                                    <m:ComboBox
+                                        id="depCombo"
+                                        items="{path: 'departmentModel>/departments', factory: '.createComboBoxItem'}"
+                                        showClearIcon="true"
+                                        width="200px"
+                                        editable="{editModel>/editable}"
+                                        value="{path: 'userData>/department'}"
+                                        change=".onComboBoxDepChange"
+                                    />
+                                </m:FlexBox>
+
+                                <m:FlexBox id="_IDGenFlexBox12" alignItems="Center">
+                                    <m:Text id="_IDGenText4" text="Team: " />
+                                    <m:ComboBox
+                                        id="teamCombo"
+                                        items="{path: 'teamModel>/teams', factory: '.createComboBoxItem'}"
+                                        showClearIcon="true"
+                                        width="200px"
+                                        editable="{editModel>/editable}"
+                                        value="{path: 'userData>/team'}"
+                                        change=".onComboBoxTeamChange"
+                                    />
+                                </m:FlexBox>
+
+                                <m:FlexBox id="_IDGenFlexBox13" alignItems="Center">
+                                    <m:Text id="_IDGenText5" text="Position: " />
+                                    <m:Input id="_IDGenInput2" value="{userData>/position}"
+                                        editable="{editModel>/editable}" />
+                                </m:FlexBox>
+
+                                <m:FlexBox id="_IDGenFlexBox14" alignItems="Center">
+                                    <m:Text id="_IDGenText6" text="Location: " />
+                                    <m:Input id="_IDGenInput3" value="{userData>/location}"
+                                        editable="{editModel>/editable}" />
+                                </m:FlexBox>
+
+                                <m:HBox id="_IDGenHBox2">
+                                    <ui:FileUploader
+                                        id="fileUploader"
+                                        name="myFileUpload"
+                                        buttonText="Search JPEG File"
+                                        tooltip="Search your profile picture"
+                                        change="handleValueChange"
+                                        typeMissmatch="handleTypeMissmatch"
+                                        style="Emphasized"
+                                        fileType="jpeg"
+                                        visible="{editModel>/editable}"
+                                        width="400px"
+                                        placeholder="Choose a picture for your profile...">
+                                    </ui:FileUploader>
+                                    <m:Button id="_IDGenButton8" text="Reset Profile Picture"
+                                        type="Reject"
+                                        press="onPressRemovePicture"
+                                        visible="{editModel>/editable}"
+                                        class="sapUiSmallMarginBegin" />
+                                </m:HBox>
+
+                            </m:VBox>
+
+
+                        </m:HBox>
+
+
+                    </m:FlexBox>
+                </headerContent>
+
+                <sections>
+                    <ObjectPageSection titleUppercase="false" id="personal"
+                        title="General Information About Me" showTitle="false">
+                        <subSections>
+                            <ObjectPageSubSection id="personalsubsection" titleUppercase="false">
+                                <blocks>
+                                    <sections:Personal id="personalblock" />
+                                </blocks>
+                            </ObjectPageSubSection>
+                        </subSections>
+                    </ObjectPageSection>
+                    <ObjectPageSection titleUppercase="false" id="wayofworking"
+                        title="My Way of Working" showTitle="false">
+                        <subSections>
+                            <ObjectPageSubSection id="wayofworkingsubsection" titleUppercase="false">
+                                <blocks>
+                                    <sections:WayOfWorking id="wayofworkingblock" />
+                                </blocks>
+                            </ObjectPageSubSection>
+                        </subSections>
+                    </ObjectPageSection>
+                    <ObjectPageSection titleUppercase="false" id="workingwithyou"
+                        title="Working With You" showTitle="false">
+                        <subSections>
+                            <ObjectPageSubSection id="workingwithyousubsection"
+                                titleUppercase="false">
+                                <blocks>
+                                    <sections:WorkingWithYou id="workingwithyoublock" />
+                                </blocks>
+                            </ObjectPageSubSection>
+                        </subSections>
+                    </ObjectPageSection>
+                    <ObjectPageSection titleUppercase="false" id="youdidntknow"
+                        title="Something You Didn't Know About Me" showTitle="false">
+                        <subSections>
+                            <ObjectPageSubSection id="youdidntknowsubsection" titleUppercase="false">
+                                <blocks>
+                                    <sections:YouDidntKnow id="youdidntknowblock" />
+                                </blocks>
+                            </ObjectPageSubSection>
+                        </subSections>
+                    </ObjectPageSection>
+
+                </sections>
+            </ObjectPageLayout>
+        </m:content>
+
+    </m:Page>
+
+</mvc:View>

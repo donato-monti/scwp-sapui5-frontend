@@ -1,0 +1,39 @@
+<mvc:View controllerName="scwp.scwpfrontend.controller.Search"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:m="sap.m"
+    xmlns="sap.uxap"
+    xmlns:layout="sap.ui.layout"
+    xmlns:ui="sap.ui.unified"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+    <m:Page id="search" showHeader="true">
+        <m:customHeader>
+            <m:Toolbar id="_IDGenToolbar1">
+                <m:content>
+                    <m:FlexBox id="_IDGenFlexBox1" justifyContent="SpaceBetween"
+                        alignItems="Center" width="100%">
+                        <m:Button id="_IDGenButton1" icon="sap-icon://home" text="Home"
+                            press="onNavigateToHome" />
+                        <m:FlexBox id="_IDGenFlexBox2" justifyContent="Center"
+                            alignItems="Center">
+                            <m:SearchField id="SearchField" width="100%"
+                                class="sapUiSmallMargin" placeholder="Search Users..."
+                                search="onSearch" />
+                        </m:FlexBox>
+                        <m:Button id="_IDGenButton2" icon="sap-icon://account"
+                            text="My Profile" press="onNavigateProfile" />
+                    </m:FlexBox>
+                </m:content>
+            </m:Toolbar>
+        </m:customHeader>
+
+        <m:List id="_IDGenList1" headerText="Search Results" noDataText="No users found!"
+            busyIndicatorDelay="150"
+            enableBusyIndicator="true"
+            growing="true"
+            growingThreshold="10"
+            growingScrollToLoad="true"
+            items="{path: 'searchResults>/', factory: '.onListItemFactory'}">
+        </m:List>
+
+    </m:Page>
+</mvc:View>
